@@ -1,49 +1,33 @@
-import console_shapes.container.Panel
-import console_shapes.shapes.*
+import console_shapes_dsl.external.panel
+import console_shapes_dsl.external.*
 
 fun main() {
-    val panel = Panel()
-    val square = Square(8, 'd')
-    val triangle = Triangle(7, 's')
-    val rhombus = Rhombus(11, 'l')
-
-    panel.addShape(square)
-    panel.addShape(Space)
-    panel.addShape(triangle)
-    panel.addShape(Space)
-    panel.addShape(rhombus)
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(square, rhombus, ComposedShape.Operation.UNION)
-    )
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(rhombus, triangle, ComposedShape.Operation.UNION)
-    )
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(square, rhombus, ComposedShape.Operation.INTERSECTION)
-    )
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(rhombus, triangle, ComposedShape.Operation.INTERSECTION)
-    )
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(
-            ComposedShape(square, rhombus, ComposedShape.Operation.UNION),
-            triangle,
-            ComposedShape.Operation.UNION
-        )
-    )
-    panel.addShape(Space)
-    panel.addShape(
-        ComposedShape(
-            ComposedShape(square, rhombus, ComposedShape.Operation.INTERSECTION),
-            triangle,
-            ComposedShape.Operation.INTERSECTION
-        )
-    )
-
-    panel.print()
+    panel {
+        val square = square {
+            lines = 8
+            char = 'd'
+        }
+        space()
+        val triangle = triangle {
+            lines = 7
+            char = 's'
+        }
+        space()
+        val rhombus = rhombus {
+            lines = 11
+            char = 'l'
+        }
+        space()
+        composed { square union rhombus }
+        space()
+        composed { rhombus + triangle }
+        space()
+        composed { square intersection rhombus }
+        space()
+        composed { rhombus - triangle }
+        space()
+        composed { square union rhombus union triangle }
+        space()
+        composed { square intersection rhombus intersection triangle }
+    }.print()
 }
