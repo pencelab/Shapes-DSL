@@ -29,5 +29,20 @@ fun main() {
         composed { square union rhombus union triangle }
         space()
         composed { square intersection rhombus intersection triangle }
+        space()
+        composed {
+
+            val smallSquare = square {
+                lines = 4
+                char = 'x'
+            }
+
+            val smallTriangle = triangle {
+                lines = 5
+                char = 'o'
+            }
+
+            smallSquare + smallTriangle union rhombus { lines = 5 }
+        }
     }.print()
 }

@@ -2,6 +2,7 @@ package console_shapes_dsl.external
 
 import console_shapes.container.Panel
 import console_shapes.shapes.*
+import console_shapes_dsl.builders.ComposedScope
 import console_shapes_dsl.builders.RhombusBuilder
 import console_shapes_dsl.builders.SquareBuilder
 import console_shapes_dsl.builders.TriangleBuilder
@@ -22,8 +23,8 @@ inline fun Panel.rhombus(init: RhombusBuilder.() -> Unit): Rhombus {
     return RhombusBuilder().apply { init() }.build().also { this.addShape(it) }
 }
 
-inline fun Panel.composed(init: Panel.() -> ComposedShape): ComposedShape {
-    return init().also { this.addShape(it) }
+inline fun Panel.composed(init: ComposedScope.() -> ComposedShape): ComposedShape {
+    return ComposedScope().run { init() }.also { this.addShape(it) }
 }
 
 fun Panel.space() {
