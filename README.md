@@ -7,6 +7,8 @@ This is a project that shows how to build a DSL with Kotlin.
 
 - `dsl`: DSL completed.
 
+- `dsl-enhanced`: DSL completed + some improvements.
+
 ### What the application does
 
 The initial code defines geometric shapes and a panel which contains a shapes' list to print them to the console simulating a physical printer, side by side, line by line, top-down.
