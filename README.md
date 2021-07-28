@@ -1,5 +1,5 @@
 # Shapes-DSL
-This is a project that shows how to build a DSL with Kotlin.
+This is a project that shows how to build a DSL in Kotlin.
 
 **Branches:**
 
